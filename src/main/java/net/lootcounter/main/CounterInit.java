@@ -7,7 +7,6 @@ import com.mojang.brigadier.context.CommandContext;
 
 import net.minecraft.text.Text;
 
-
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v1.*;
 import net.minecraft.client.MinecraftClient;
@@ -17,6 +16,7 @@ import net.minecraft.text.LiteralText;
 public class CounterInit implements ModInitializer {
 	
 	public static int counter;
+	public static int floorCounter;
 	public static String maxchests;
 	public static final Logger LOGGER = LoggerFactory.getLogger("lootcounter");
 	static PlayerEntity player;
@@ -53,6 +53,10 @@ public class CounterInit implements ModInitializer {
 		counter = 0;
 		LOGGER.info("Counter set to 0");
 	}
+	public static void ResetFloorCounter (){
+		floorCounter = 0;
+		LOGGER.info("Floor counter set to 0");
+	}
 
 	@Override
 	public void onInitialize() {
@@ -88,12 +92,12 @@ public class CounterInit implements ModInitializer {
 				case "monumenta:corridors":{
 					if(maxchests.equals("∞")) {
 						player.sendMessage(new LiteralText ("§7Current Dungeon : §6Ephemeral Corridors (Endless)"), false);
-						player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
 					}
 					if(maxchests.equals("21")) {
 						player.sendMessage(new LiteralText ("§7Current Dungeon : §6Ephemeral Corridors"), false);
-						player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
 					}
+					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests+" ("+CounterInit.floorCounter+"/7 on this floor)"), false);
+					
 				}
 				break;
 				default:{
