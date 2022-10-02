@@ -32,6 +32,10 @@ public class ChatHudMixin {
 		}
 		if(message.getString().startsWith("Transferring you to")) {
 			CounterInit.ResetCounter();
+			CounterInit.ResetFloorCounter();
+		}
+		if(message.getString().startsWith("[Corridors] You have advanced")) {
+			CounterInit.ResetFloorCounter();
 		}
 	}
 }
