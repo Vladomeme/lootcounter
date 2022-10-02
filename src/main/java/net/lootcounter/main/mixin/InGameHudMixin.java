@@ -22,8 +22,14 @@ public class InGameHudMixin {
 		CounterInit.SetCounter();
 		if(message.getString().equals("+1 Chest added to lootroom.")) {
 			CounterInit.counter ++;
-			newMessage = Text.of("§6+1 Chest "+"§cadded to lootroom."+" §6"+CounterInit.counter+"/"+CounterInit.maxchests);
-			CounterInit.LOGGER.info("+1 Chest "+"added to lootroom. "+CounterInit.counter+"/"+CounterInit.maxchests);
+			CounterInit.floorCounter ++;
+			if(CounterInit.maxchests.equals("∞")||CounterInit.maxchests.equals("21")) {
+				newMessage = Text.of("§6+1 Chest "+"§cadded to lootroom."+" §6"+CounterInit.counter+"/"+CounterInit.maxchests+" ("+CounterInit.floorCounter+"/7)");
+			}
+			else {
+				newMessage = Text.of("§6+1 Chest "+"§cadded to lootroom."+" §6"+CounterInit.counter+"/"+CounterInit.maxchests);
+			};
+			CounterInit.LOGGER.info(newMessage.getString());
 			CounterInit.setTitle(newMessage);
 			ci.cancel();
 	        return;
