@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.lootcounter.main.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "InGameHudMixin",
+    "ChangedDimensionsMixin",
+    "ChatHudMixin"
+  ],
+  "client": [
+    "InGameHudMixin",
+    "ChangedDimensionsMixin",
+    "ChatHudMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
