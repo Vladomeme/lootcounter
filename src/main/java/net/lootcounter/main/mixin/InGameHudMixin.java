@@ -19,7 +19,6 @@ public class InGameHudMixin {
 
 	@Inject(method = "Lnet/minecraft/client/gui/hud/InGameHud;setOverlayMessage(Lnet/minecraft/text/Text;Z)V", at = @At("HEAD"), cancellable = true)
 	void setOverlayMessage(Text message, boolean tinted, CallbackInfo ci) {
-		CounterInit.SetCounter();
 		if(message.getString().equals("+1 Chest added to lootroom.")) {
 			CounterInit.counter ++;
 			CounterInit.floorCounter ++;
