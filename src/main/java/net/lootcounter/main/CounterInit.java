@@ -7,6 +7,7 @@ import com.mojang.brigadier.context.CommandContext;
 
 import net.minecraft.text.Text;
 
+
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v1.*;
 import net.minecraft.client.MinecraftClient;
@@ -20,43 +21,7 @@ public class CounterInit implements ModInitializer {
 	public static String maxchests;
 	public static final Logger LOGGER = LoggerFactory.getLogger("lootcounter");
 	static PlayerEntity player;
-	public static String currentDimension = null;
-	
-	@SuppressWarnings("resource")
-	public static void SetCounter (){
-		if(MinecraftClient.getInstance().player != null) {
-			if(!getDimension().equals(currentDimension)) {
-				ResetCounter();
-			}
-			currentDimension = getDimension();
-			switch (currentDimension) {
-				case "monumenta:sanctum":{
-					maxchests = "65";
-				}
-				break;
-				case "monumenta:verdant":{
-					maxchests = "42";
-				}
-				break;
-				case "monumenta:mist":{
-					maxchests = "40";
-				}
-				break;
-				case "monumenta:remorse":{
-					maxchests = "62";
-				}
-				break;
-			};
-		}
-	}
-	public static void ResetCounter (){
-		counter = 0;
-		LOGGER.info("Counter set to 0");
-	}
-	public static void ResetFloorCounter (){
-		floorCounter = 0;
-		LOGGER.info("Floor counter set to 0");
-	}
+	public static String currentDimension = "none";
 
 	@Override
 	public void onInitialize() {
@@ -65,31 +30,42 @@ public class CounterInit implements ModInitializer {
 			.executes(CounterInit::Chests)
 		);
 	}
+	
+	public static void ResetCounter (){
+		counter = 0;
+		LOGGER.info("Counter set to 0");
+	}
+	
+	public static void ResetFloorCounter (){
+		floorCounter = 0;
+		LOGGER.info("Floor counter set to 0");
+	}
+	
 	static public int Chests(CommandContext<FabricClientCommandSource> context) {
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		if(MinecraftClient.getInstance().player != null) {
-			switch (CounterInit.getDimension()) {
-				case "monumenta:sanctum":{
+			switch (currentDimension) {
+				case "sanctum":{
 					player.sendMessage(new LiteralText ("§7Current Strike : §aForsworn Sanctum"), false);
 					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
 				}
 				break;
-				case "monumenta:verdant":{
+				case "verdant":{
 					player.sendMessage(new LiteralText ("§7Current Strike : §2Verdant Remnants"), false);
 					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
 				}
 				break;
-				case "monumenta:mist":{
+				case "mist":{
 					player.sendMessage(new LiteralText ("§7Current Strike : §1The Black Mist"), false);
 					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
 				}
 				break;
-				case "monumenta:remorse":{
+				case "remorse":{
 					player.sendMessage(new LiteralText ("§7Current Strike : §cSealed Remorse"), false);
 					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
 				}	
 				break;
-				case "monumenta:corridors":{
+				case "corridors":{
 					if(maxchests.equals("∞")) {
 						player.sendMessage(new LiteralText ("§7Current Dungeon : §6Ephemeral Corridors (Endless)"), false);
 					}
@@ -100,7 +76,7 @@ public class CounterInit implements ModInitializer {
 					
 				}
 				break;
-				default:{
+				case "none":{
 					player.sendMessage(new LiteralText ("§7Not currently in a Strike!"), false);
 				}
 				break;
@@ -112,9 +88,5 @@ public class CounterInit implements ModInitializer {
 	static public void setTitle(Text message) {
 		player = MinecraftClient.getInstance().player;
 		player.sendMessage(message, true);
-	}
-	static public String getDimension() {
-		player = MinecraftClient.getInstance().player;
-		return player.world.getRegistryKey().getValue().toString();
 	}
 }
