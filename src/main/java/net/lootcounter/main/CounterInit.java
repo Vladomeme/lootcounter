@@ -21,7 +21,7 @@ public class CounterInit implements ModInitializer {
 	public static String maxchests;
 	public static final Logger LOGGER = LoggerFactory.getLogger("lootcounter");
 	static PlayerEntity player;
-	public static String currentDimension = "none";
+	public static String currentDimension = "0";
 
 	@Override
 	public void onInitialize() {
@@ -45,27 +45,17 @@ public class CounterInit implements ModInitializer {
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		if(MinecraftClient.getInstance().player != null) {
 			switch (currentDimension) {
-				case "sanctum":{
+				case "1": {
+					player.sendMessage(new LiteralText("§7Current Strike : §2Verdant Remnants"), false);
+					player.sendMessage(new LiteralText("§7Chests : §6" + CounterInit.counter + "/" + CounterInit.maxchests), false);
+				}
+				break;
+				case "2":{
 					player.sendMessage(new LiteralText ("§7Current Strike : §aForsworn Sanctum"), false);
 					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
 				}
 				break;
-				case "verdant":{
-					player.sendMessage(new LiteralText ("§7Current Strike : §2Verdant Remnants"), false);
-					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
-				}
-				break;
-				case "mist":{
-					player.sendMessage(new LiteralText ("§7Current Strike : §1The Black Mist"), false);
-					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
-				}
-				break;
-				case "remorse":{
-					player.sendMessage(new LiteralText ("§7Current Strike : §cSealed Remorse"), false);
-					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
-				}	
-				break;
-				case "corridors":{
+				case "3":{
 					if(maxchests.equals("∞")) {
 						player.sendMessage(new LiteralText ("§7Current Dungeon : §6Ephemeral Corridors (Endless)"), false);
 					}
@@ -73,10 +63,35 @@ public class CounterInit implements ModInitializer {
 						player.sendMessage(new LiteralText ("§7Current Dungeon : §6Ephemeral Corridors"), false);
 					}
 					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests+" ("+CounterInit.floorCounter+"/7 on this floor)"), false);
-					
+
 				}
 				break;
-				case "none":{
+				case "4":{
+					player.sendMessage(new LiteralText ("§7Current Strike : §9The Black Mist"), false);
+					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
+				}
+				break;
+				case "5":{
+					player.sendMessage(new LiteralText ("§7Current Strike : §cSealed Remorse"), false);
+					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
+				}
+				break;
+				case "6":{
+					player.sendMessage(new LiteralText ("§7Current Strike : §6Silver Knight's Tomb"), false);
+					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
+				}
+				break;
+				case "7":{
+					player.sendMessage(new LiteralText ("§7Current Strike : §bP.O.R.T.A.L"), false);
+					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
+				}
+				break;
+				case "8":{
+					player.sendMessage(new LiteralText ("§7Current Strike : §1Masquerader's Ruin"), false);
+					player.sendMessage(new LiteralText ("§7Chests : §6"+CounterInit.counter+"/"+CounterInit.maxchests), false);
+				}
+				break;
+				case "0":{
 					player.sendMessage(new LiteralText ("§7Not currently in a Strike!"), false);
 				}
 				break;
