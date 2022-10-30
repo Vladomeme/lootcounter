@@ -16,33 +16,45 @@ public class ChatHudMixin {
 		String chatmessage = message.getString();
 		if(chatmessage.startsWith("Transferring you to")) {
 			CounterInit.ResetCounter();
-			CounterInit.currentDimension= "none";
+			CounterInit.currentDimension= "0";
 			CounterInit.ResetFloorCounter();
 			switch(chatmessage) {
-			case "Transferring you to verdant":{
-				CounterInit.currentDimension="verdant";
-				CounterInit.maxchests="42";
+				case "Transferring you to verdant":{
+					CounterInit.currentDimension="1";
+					CounterInit.maxchests="42";
+				}
+				break;
+				case "Transferring you to sanctum":{
+					CounterInit.currentDimension="2";
+					CounterInit.maxchests="65";
+				}
+				break;
+				case "Transferring you to corridors":{
+					CounterInit.currentDimension="3";
+				}
+				break;
+				case "Transferring you to mist":{
+					CounterInit.currentDimension="4";
+					CounterInit.maxchests="41";
+				}
+				break;
+				case "Transferring you to remorse":{
+					CounterInit.currentDimension="5";
+					CounterInit.maxchests="62";
+				}
+				break;
 			}
-			break;
-			case "Transferring you to sanctum":{
-				CounterInit.currentDimension="sanctum";
-				CounterInit.maxchests="65";
+			if(chatmessage.startsWith("Transferring you to skt")) {
+				CounterInit.currentDimension="6";
+				CounterInit.maxchests="?";
 			}
-			break;
-			case "Transferring you to corridors":{
-				CounterInit.currentDimension="corridors";
+			if(chatmessage.startsWith("Transferring you to portal")) {
+				CounterInit.currentDimension="7";
+				CounterInit.maxchests="?";
 			}
-			break;
-			case "Transferring you to mist":{
-				CounterInit.currentDimension="mist";
-				CounterInit.maxchests="40";
-			}
-			break;
-			case "Transferring you to remorse":{
-				CounterInit.currentDimension="remorse";
-				CounterInit.maxchests="62";
-			}
-			break;
+			if(chatmessage.startsWith("Transferring you to ruin")) {
+				CounterInit.currentDimension="8";
+				CounterInit.maxchests="?";
 			}
 		}
 		switch(chatmessage) {
