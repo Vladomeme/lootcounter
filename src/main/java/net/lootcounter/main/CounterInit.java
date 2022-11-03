@@ -1,12 +1,11 @@
 package net.lootcounter.main;
 
+import net.minecraft.world.GameRules;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
 
 import net.minecraft.text.Text;
-
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.command.v1.*;
@@ -95,7 +94,10 @@ public class CounterInit implements ModInitializer {
 					player.sendMessage(new LiteralText ("§7Not currently in a Strike!"), false);
 				}
 				break;
-			};	
+			};
+			LOGGER.info("Debug: ["+MinecraftClient.getInstance().world.getDifficulty().toString()+", "+
+									MinecraftClient.getInstance().world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)+", "+
+									player.world.getRegistryKey().getValue().toString().startsWith("monumenta")+"]");
 		}
 		return 1;
 	
