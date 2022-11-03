@@ -35,7 +35,7 @@ public class ChatHudMixin {
 				break;
 				case "Transferring you to mist":{
 					CounterInit.currentDimension="4";
-					CounterInit.maxchests="41";
+					CounterInit.maxchests="42";
 				}
 				break;
 				case "Transferring you to remorse":{
@@ -46,30 +46,30 @@ public class ChatHudMixin {
 			}
 			if(chatmessage.startsWith("Transferring you to skt")) {
 				CounterInit.currentDimension="6";
-				CounterInit.maxchests="?";
+				CounterInit.maxchests="?(90)";
 			}
 			if(chatmessage.startsWith("Transferring you to portal")) {
 				CounterInit.currentDimension="7";
-				CounterInit.maxchests="?";
+				CounterInit.maxchests="41";
 			}
 			if(chatmessage.startsWith("Transferring you to ruin")) {
 				CounterInit.currentDimension="8";
-				CounterInit.maxchests="?";
+				CounterInit.maxchests="?(98)";
 			}
 		}
 		switch(chatmessage) {
-		case "[-_-] Is this the run that never ends? Yes it goes on and on my friend.": {
-			CounterInit.maxchests="∞";
-		}
-		break;
-		case "[-_-] Getting saved is standard now? Adventurers these days...": {
-			CounterInit.maxchests="21";
-		}
-		break;
-		case "[-_-] Practice makes perfect. Take all the time you need.": {
-			CounterInit.maxchests="21";
-		}
-		break;
+			case "[-_-] Is this the run that never ends? Yes it goes on and on my friend.": {
+				CounterInit.maxchests="∞";
+			}
+			break;
+			case "[-_-] Getting saved is standard now? Adventurers these days...": {
+				CounterInit.maxchests="21";
+			}
+			break;
+			case "[-_-] Practice makes perfect. Take all the time you need.": {
+				CounterInit.maxchests="21";
+			}
+			break;
 		}
 		if(chatmessage.startsWith("[Corridors] You have advanced")) {
 			CounterInit.ResetFloorCounter();
