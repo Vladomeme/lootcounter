@@ -5,10 +5,12 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "InGameHudMixin",
+    "PlayerEntityMixin",
     "ChatHudMixin"
   ],
   "client": [
     "InGameHudMixin",
+    "PlayerEntityMixin",
     "ChatHudMixin"
   ],
   "injectors": {
