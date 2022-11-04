@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Loot Counter",
-  "description": "Counts and displays collected loot chests in Strikes.",
+  "description": "Counts and displays collected loot chests in Strikes. Requires Spoof World Names to be enabled in PEB.",
   "authors": [
     "Vladomeme"
   ],
