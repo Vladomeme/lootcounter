@@ -15,9 +15,12 @@ public class ChatHudMixin {
 	void addMessage(Text message, CallbackInfo ci) {
 		String chatmessage = message.getString();
 		if(chatmessage.startsWith("Transferring you to")) {
-			CounterInit.ResetCounter();
-			CounterInit.currentDimension= "0";
-			CounterInit.ResetFloorCounter();
+			String dimension = CounterInit.getDimension();
+			if(dimension.equals("monumenta:valley") || dimension.equals("monumenta:isles") || dimension.equals("monumenta:ring")) {
+				CounterInit.ResetCounter();
+				CounterInit.currentDimension= "0";
+				CounterInit.ResetFloorCounter();
+			}
 			switch(chatmessage) {
 				case "Transferring you to verdant":{
 					CounterInit.currentDimension="1";
@@ -55,6 +58,15 @@ public class ChatHudMixin {
 			if(chatmessage.startsWith("Transferring you to ruin")) {
 				CounterInit.currentDimension="8";
 				CounterInit.maxchests="?(98)";
+			}
+			if(chatmessage.startsWith("Transferring you to valley")) {
+				CounterInit.currentDimension= "0";
+			}
+			if(chatmessage.startsWith("Transferring you to isles")) {
+				CounterInit.currentDimension= "0";
+			}
+			if(chatmessage.startsWith("Transferring you to ring")) {
+				CounterInit.currentDimension= "0";
 			}
 		}
 		switch(chatmessage) {
