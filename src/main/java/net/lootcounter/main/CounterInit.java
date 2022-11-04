@@ -14,7 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
 
 public class CounterInit implements ModInitializer {
-	
+
 	public static int counter;
 	public static int floorCounter;
 	public static String maxchests;
@@ -29,17 +29,17 @@ public class CounterInit implements ModInitializer {
 			.executes(CounterInit::Chests)
 		);
 	}
-	
+
 	public static void ResetCounter (){
 		counter = 0;
 		LOGGER.info("Counter set to 0");
 	}
-	
+
 	public static void ResetFloorCounter (){
 		floorCounter = 0;
 		LOGGER.info("Floor counter set to 0");
 	}
-	
+
 	static public int Chests(CommandContext<FabricClientCommandSource> context) {
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		if(MinecraftClient.getInstance().player != null) {
@@ -95,15 +95,23 @@ public class CounterInit implements ModInitializer {
 				}
 				break;
 			};
-			LOGGER.info("Debug: ["+MinecraftClient.getInstance().world.getDifficulty().toString()+", "+
-									MinecraftClient.getInstance().world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)+", "+
-									player.world.getRegistryKey().getValue().toString().startsWith("monumenta")+"]");
+			LOGGER.info("Debug: ["+getDimension()+", "+
+					MinecraftClient.getInstance().world.getDifficulty().toString()+", "+
+					MinecraftClient.getInstance().world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)+", "+
+					player.world.getRegistryKey().getValue().toString().startsWith("monumenta")+"]");
+			if(!player.world.getRegistryKey().getValue().toString().startsWith("monumenta")){
+				player.sendMessage(Text.of("§7Incorrect dimension name. If you're on Monumenta, make sure World Name Spoofing is enabled in PEB."),false);
+			}
 		}
 		return 1;
-	
+
 	}
 	static public void setTitle(Text message) {
 		player = MinecraftClient.getInstance().player;
 		player.sendMessage(message, true);
+	}
+	static public String getDimension() {
+		player = MinecraftClient.getInstance().player;
+		return player.world.getRegistryKey().getValue().toString();
 	}
 }
