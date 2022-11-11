@@ -49,7 +49,7 @@ public class ChatHudMixin {
 			}
 			if(chatmessage.startsWith("Transferring you to skt")) {
 				CounterInit.currentDimension="6";
-				CounterInit.maxchests="95";
+				CounterInit.maxchests="96";
 			}
 			if(chatmessage.startsWith("Transferring you to portal")) {
 				CounterInit.currentDimension="7";
