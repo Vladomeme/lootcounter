@@ -49,7 +49,7 @@ public class ChatHudMixin {
 			}
 			if(chatmessage.startsWith("Transferring you to skt")) {
 				CounterInit.currentDimension="6";
-				CounterInit.maxchests="96";
+				CounterInit.maxchests="97";
 			}
 			if(chatmessage.startsWith("Transferring you to portal")) {
 				CounterInit.currentDimension="7";
@@ -57,7 +57,7 @@ public class ChatHudMixin {
 			}
 			if(chatmessage.startsWith("Transferring you to ruin")) {
 				CounterInit.currentDimension="8";
-				CounterInit.maxchests="99";
+				CounterInit.maxchests="100";
 			}
 			if(chatmessage.startsWith("Transferring you to valley")) {
 				CounterInit.currentDimension= "0";
